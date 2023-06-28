@@ -1,6 +1,6 @@
-DATA_ROOT=/dataset/fd5061f6/tuteng/BlockLM/data
-CHECKPOINT_PATH=/dataset/fd5061f6/english_data/checkpoints
-SAVE_PATH=/dataset/fd5061f6/tuteng/BlockLM/finetune_checkpoints
+DATA_ROOT=/share/lxh/SuperGLUE
+CHECKPOINT_PATH=/share/lxh
+SAVE_PATH=/share/lxh/distribute_train/GLM-zp/saved
 DATESTR=$(date +"%m-%d-%H-%M")
 
 source $1    # Model
