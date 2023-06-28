@@ -3,7 +3,7 @@
 .DS_Store
 *.pyc
 logs
-runs
+
 settings.json
 .gitignore
 .vscode/
