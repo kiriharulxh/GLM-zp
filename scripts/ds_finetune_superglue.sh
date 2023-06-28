@@ -6,7 +6,7 @@ DATESTR=$(date +"%m-%d-%H-%M")
 source $1    # Model
 source $2    # Task
 
-NUM_WORKERS=1
+NUM_WORKERS=3
 NUM_GPUS_PER_WORKER=8
 MP_SIZE=1
 MASTER_PORT=$(shuf -n 1 -i 10000-65535)
