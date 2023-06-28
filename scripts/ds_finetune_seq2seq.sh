@@ -1,12 +1,12 @@
 DATA_ROOT=/root/data
-CHECKPOINT_PATH="/dataset/c07bd62b/finetune_checkpoints"
-SAVE_PATH=/root/data/finetune_checkpoints
+CHECKPOINT_PATH="/share/lxh"
+SAVE_PATH=/share/lxh
 DATESTR=$(date +"%m-%d-%H-%M")
 
 source $1    # Model
 source $2    # Task
 
-NUM_WORKERS=2
+NUM_WORKERS=3
 NUM_GPUS_PER_WORKER=8
 HOST_FILE_PATH="./hostfile"
 MP_SIZE=1
