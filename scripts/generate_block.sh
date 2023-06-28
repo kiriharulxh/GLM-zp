@@ -1,5 +1,5 @@
 #!/bin/bash
-CHECKPOINT_PATH=/zhangpai21/checkpoints
+CHECKPOINT_PATH=/share/lxh
 
 source $1
 
