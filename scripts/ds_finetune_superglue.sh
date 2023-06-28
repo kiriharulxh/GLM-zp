@@ -6,7 +6,8 @@ DATESTR=$(date +"%m-%d-%H-%M")
 source $1    # Model
 source $2    # Task
 
-NUM_WORKERS=3
+# NUM_WORKERS=3
+NUM_WORKERS=1
 NUM_GPUS_PER_WORKER=8
 MP_SIZE=1
 MASTER_PORT=$(shuf -n 1 -i 10000-65535)
@@ -14,7 +15,7 @@ MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 OPTIONS_NCCL="NCCL_DEBUG=info NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2"
 HOST_FILE_PATH="/share/lxh/distribute_train/GLM-zp/hostfile"
 
-DISTRIBUTED_ARGS="${OPTIONS_NCCL} deepspeed --master_port $MASTER_PORT --num_nodes ${NUM_WORKERS} --num_gpus ${NUM_GPUS_PER_WORKER} --hostfile ${HOST_FILE_PATH}"
+DISTRIBUTED_ARGS="${OPTIONS_NCCL} deepspeed --master_port $MASTER_PORT --num_nodes ${NUM_WORKERS} --num_gpus ${NUM_GPUS_PER_WORKER} " # --hostfile ${HOST_FILE_PATH}
 
 EXPERIMENT_NAME=${EXPERIMENT_NAME}_${DATESTR}
 mkdir logs
