@@ -6,7 +6,7 @@ DATESTR=$(date +"%m-%d-%H-%M")
 source $1    # Model
 source $2    # Task
 
-NUM_WORKERS=3
+NUM_WORKERS=2
 NUM_GPUS_PER_WORKER=8
 HOST_FILE_PATH="./hostfile"
 MP_SIZE=1
