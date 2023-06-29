@@ -11,7 +11,7 @@ TRAIN_ARGS="--epochs 15 \
 
 COMMON_ARGS="--save-interval 10000 \
              --log-interval 50 \
-             --eval-interval 1000 \
+             --eval-interval 100 \
              --eval-iters 100"
 
 TASK_ARGS="--src-seq-length 608 \
