@@ -12,7 +12,7 @@ COMMON_ARGS="--save-interval 10000 \
              --log-interval 50 \
              --eval-interval 1000 \
              --eval-iters 100 \
-             --eval-epoch 2"
+             --eval-epoch 1"
 
 TASK_ARGS="--src-seq-length 2048 \
            --tgt-seq-length 128 \

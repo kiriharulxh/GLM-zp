@@ -246,7 +246,7 @@ def _train(model, optimizer, lr_scheduler, forward_step,
                                          args)
                 total_lm_loss = 0.0
             if args.iteration % 200 == 0:
-                score_dict = end_of_epoch_callback(model, epoch, summary_writer=summary_writer)
+                score_dict = end_of_epoch_callback(model, epoch, output_predictions=True, summary_writer=summary_writer)
                 if score_dict:
                     validation_metric = args.validation_metric if args.validation_metric else list(score_dict.keys())[0]
                     validation_score = score_dict[validation_metric]
@@ -268,7 +268,7 @@ def _train(model, optimizer, lr_scheduler, forward_step,
 
         # Callback at the end of each epoch.
         if end_of_epoch_callback is not None and (epoch + 1) % args.eval_epoch == 0:
-            score_dict = end_of_epoch_callback(model, epoch, summary_writer=summary_writer)
+            score_dict = end_of_epoch_callback(model, epoch, output_predictions=True, summary_writer=summary_writer)
             if score_dict:
                 validation_metric = args.validation_metric if args.validation_metric else list(score_dict.keys())[0]
                 validation_score = score_dict[validation_metric]

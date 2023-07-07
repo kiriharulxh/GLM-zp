@@ -3,7 +3,7 @@
 import torch
 import torch.nn
 from .modeling_glm import GLMModel
-
+from utils import print_rank_0
 
 class GLMForMultiTokenCloze(torch.nn.Module):
     def __init__(self, language_model: GLMModel, take_softmax=True, length_penalty=0.0):
@@ -45,7 +45,8 @@ class GLMForMultiTokenCloze(torch.nn.Module):
         seq_ids = torch.arange(target_ids.size(-1), dtype=torch.long, device=target_ids.device)
         seq_ids = seq_ids.unsqueeze(0).expand_as(target_ids)
         logits = outputs[batch_ids, seq_ids, target_ids]
-        logits = (logits * logit_mask).sum(dim=1)
+        print_rank_0("**************** You Found the Right Place! *********************")
+        logits = (logits * logit_mask).mean(dim=1)
         if self.length_penalty > 0.0:
             logits = logits / logit_mask.sum(dim=1) ** self.length_penalty
         if num_choices is not None:
