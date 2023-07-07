@@ -1,5 +1,5 @@
 CHECKPOINT_PATH="/share/lxh"
-DATA_PATH="/share/lxh/distribute_train/held-out/ceval/ceval-test.jsonl"
+DATA_PATH="/share/lxh/distribute_train/held-out/ZeroCLUE-test.jsonl"
 
 source $1    # Model
 
@@ -19,7 +19,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --finetune \
        --cloze-eval \
        --task multichoice \
-       --test-data ${DATA_PATH} \
+       --test-data /share/lxh/distribute_train/held-out/ceval/ceval-test.jsonl /share/lxh/distribute_train/held-out/ceval/ceval-choiceonly-test.jsonl /share/lxh/distribute_train/held-out/ZeroCLUE-test.jsonl \
        --seq-length ${MAX_SEQ_LEN} \
        --checkpoint-activations \
        --eval-batch-size 16 \

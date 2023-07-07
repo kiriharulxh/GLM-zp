@@ -1,5 +1,5 @@
 CHECKPOINT_PATH="/share/lxh"
-DATA_PATH="/share/lxh/distribute_train/held-out/ceval/ceval-test.jsonl"
+DATA_PATH="/share/lxh/distribute_train/held-out/ZeroCLUE-test.jsonl"
 
 source $1    # Model
 
