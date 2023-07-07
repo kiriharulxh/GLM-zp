@@ -1,6 +1,6 @@
 EXPERIMENT_NAME=${MODEL_TYPE}-customization
 TASK_NAME=customization
-DATA_PATH="${DATA_ROOT}/customization"
+DATA_PATH="/share/lxh/distribute_train/train_data_zs"
 
 TRAIN_ARGS="--epochs 10 \
             --lr 1e-5 \
@@ -14,9 +14,9 @@ COMMON_ARGS="--save-interval 10000 \
              --eval-iters 100 \
              --eval-epoch 2"
 
-TASK_ARGS="--src-seq-length 512 \
+TASK_ARGS="--src-seq-length 2048 \
            --tgt-seq-length 128 \
-           --min-tgt-length 55 \
+           --min-tgt-length 0 \
            --length-penalty 0.7 \
            --no-repeat-ngram-size 3 \
            --num-beams 5 \

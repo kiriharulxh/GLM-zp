@@ -796,15 +796,13 @@ class CustomizationDataset(torch.utils.data.Dataset):
         print_rank_0(f"Creating {task}-{split} dataset from {data_dir}")
         self.dataset_name = split
         source_texts, target_texts = [], []
-        with open(os.path.join(data_dir, f"{filename}.source"),
+        with open(os.path.join(data_dir, f"{filename}.jsonl"),
                   encoding='utf-8') as file:
             for line in file:
+                info = json.loads(line)
                 line = line.strip()
-                source_texts.append(line)
-        with open(os.path.join(data_dir, f"{filename}.target"), encoding='utf-8') as file:
-            for line in file:
-                line = line.strip()
-                target_texts.append(line)
+                source_texts.append(info["inputs_pretokenized"])
+                target_texts.append(info["targets_pretokenized"])
         self.examples, self.example_list = {}, []
         for idx, (source_text, target_text) in enumerate(zip(source_texts, target_texts)):
             if (idx + 1) % 20000 == 0:
