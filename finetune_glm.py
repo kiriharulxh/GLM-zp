@@ -245,15 +245,15 @@ def _train(model, optimizer, lr_scheduler, forward_step,
                                          elapsed_time * 1000.0 / args.log_interval, args.iteration, args.train_iters,
                                          args)
                 total_lm_loss = 0.0
-            if args.iteration % 200 == 0:
-                score_dict = end_of_epoch_callback(model, epoch, output_predictions=True, summary_writer=summary_writer)
-                if score_dict:
-                    validation_metric = args.validation_metric if args.validation_metric else list(score_dict.keys())[0]
-                    validation_score = score_dict[validation_metric]
-                    if best_iteration is None or validation_score > best_score:
-                        best_iteration = args.iteration
-                        best_score = validation_score
-                        print_rank_0(f"Found best {validation_metric} {best_score} at {best_iteration}")
+            # if args.iteration % 200 == 0:
+            #     score_dict = end_of_epoch_callback(model, epoch, output_predictions=True, summary_writer=summary_writer)
+            #     if score_dict:
+            #         validation_metric = args.validation_metric if args.validation_metric else list(score_dict.keys())[0]
+            #         validation_score = score_dict[validation_metric]
+            #         if best_iteration is None or validation_score > best_score:
+            #             best_iteration = args.iteration
+            #             best_score = validation_score
+            #             print_rank_0(f"Found best {validation_metric} {best_score} at {best_iteration}")
 
             # Evaluation
             if args.eval_interval and valid_dataloader is not None and args.iteration % args.eval_interval == 0:
