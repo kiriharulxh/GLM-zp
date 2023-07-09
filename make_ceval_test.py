@@ -23,3 +23,25 @@ for name in os.listdir(root):
 
 with open("/Users/liuxinghan/Downloads/ceval-test.jsonl", "w") as f:
     f.write("\n".join(out))
+
+
+for name in os.listdir(root):
+    df = pd.read_csv(root + "/" + name, sep=',', encoding='utf-8')
+    for i, instance in enumerate(df.to_dict(orient="records")):
+        info = {}
+        if len(instance["question"].split("____")) != 2:
+            # print(f'{name}: {instance["question"]}')
+            continue
+
+        info["inputs_pretokenized"] = instance["question"]
+        for j in ["A", "B", "C", "D"]:
+            info["inputs_pretokenized"] += f"\n{j}. {instance[j]}"
+        info["inputs_pretokenized"] += "\n"
+
+        info["choices_pretokenized"] = ["A", "B", "C", "D"]
+        info["label"] = label_dic[instance["answer"]]
+
+        out.append(json.dumps(info, ensure_ascii=False))
+
+with open("/Users/liuxinghan/Downloads/ceval-choiceonly-test.jsonl", "w") as f:
+    f.write("\n".join(out))
