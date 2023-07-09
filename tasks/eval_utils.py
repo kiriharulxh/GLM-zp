@@ -68,11 +68,19 @@ def accuracy_func_provider(single_dataset_provider, metric_dict, args, is_test=F
     dataloaders = []
     eval_batch_size = args.eval_batch_size if args.eval_batch_size else args.batch_size
     for datapath in datapaths:
-        dataset = single_dataset_provider(datapath)
-        dataloader = build_data_loader(
-            dataset, eval_batch_size, num_workers=args.num_workers,
-            drop_last=False, shuffle=False, only_rank0=only_rank0)
-        dataloaders.append((dataset.dataset_name, dataloader))
+        if os.path.isdir(datapath):
+            for sub in os.listdir(datapath):
+                dataset = single_dataset_provider(os.path.join(datapath, sub))
+                dataloader = build_data_loader(
+                    dataset, eval_batch_size, num_workers=args.num_workers,
+                    drop_last=False, shuffle=False, only_rank0=only_rank0)
+                dataloaders.append((dataset.dataset_name, dataloader))
+        else:
+            dataset = single_dataset_provider(datapath)
+            dataloader = build_data_loader(
+                dataset, eval_batch_size, num_workers=args.num_workers,
+                drop_last=False, shuffle=False, only_rank0=only_rank0)
+            dataloaders.append((dataset.dataset_name, dataloader))
 
     def metrics_func(model, epoch, output_predictions=False, summary_writer=None):
         print_rank_0('calculating metrics ...')

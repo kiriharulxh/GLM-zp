@@ -9,7 +9,7 @@ MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 MAX_SEQ_LEN=1024
 
 OPTIONS_NCCL="NCCL_DEBUG=info NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2"
-DISTRIBUTED_ARGS="${OPTIONS_NCCL} deepspeed --master_port $MASTER_PORT --num_nodes ${NUM_WORKERS} --num_gpus ${NUM_GPUS_PER_WORKER}"
+DISTRIBUTED_ARGS="${OPTIONS_NCCL} deepspeed --include localhost:4 --master_port $MASTER_PORT"
 
 mkdir logs
 run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
@@ -18,7 +18,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --finetune \
        --cloze-eval \
        --task multichoice \
-       --test-data /share/lxh/distribute_train/held-out-mc \
+       --test-data /share/lxh/distribute_train/held-out-mc/4 \
        --seq-length ${MAX_SEQ_LEN} \
        --checkpoint-activations \
        --eval-batch-size 16 \

@@ -63,7 +63,7 @@ def train_valid_datasets_provider(args, tokenizer):
         valid_dataset = None
     elif args.task.lower() == 'customization':
         train_dataset = CustomizationDataset(args, split='train', tokenizer=tokenizer)
-        valid_dataset = None
+        valid_dataset = CustomizationDataset(args, split='dev', tokenizer=tokenizer)
     else:
         train_dataset = Seq2SeqDataset(args, split='train', tokenizer=tokenizer)
         valid_dataset = None
