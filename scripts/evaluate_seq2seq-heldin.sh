@@ -23,6 +23,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --task ${TASK_NAME} \
        --data-dir ${DATA_PATH} \
        --checkpoint-activations \
+       --eval-batch-size 8 \
        --num-workers 1 \
        --no-load-optim \
        --no-load-lr-scheduler \
