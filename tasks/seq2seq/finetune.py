@@ -96,6 +96,8 @@ def metrics_func_provider(args, tokenizer, is_test):
             dataset = 'cnn_dm'
         elif args.task.lower() == 'gigaword':
             dataset = 'gigaword'
+        elif args.task.lower() == 'customization':
+            dataset = 'customization'
         else:
             dataset = 'cnn_dm_org'
         if args.task.lower() in ['squad', 'squad_v1']:

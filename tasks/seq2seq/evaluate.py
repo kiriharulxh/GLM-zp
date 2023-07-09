@@ -182,6 +182,8 @@ def rouge_metric(predictions, labels, examples, metric="rouge-1", duplicate_rate
         with open("./results.json", "w") as output:
             for ref, pred in zip(ref_list, pred_list):
                 output.write(json.dumps({"ref": ref, "pred": pred}) + "\n")
+    if dataset == 'customization':
+        pred_list, ref_list = predictions, refs
     scorer = rouge_scorer.RougeScorer([metric_dict[metric]], use_stemmer=True)
     scores = [scorer.score(pred, ref) for pred, ref in zip(pred_list, ref_list)]
     scores = [score[metric_dict[metric]].fmeasure for score in scores]
