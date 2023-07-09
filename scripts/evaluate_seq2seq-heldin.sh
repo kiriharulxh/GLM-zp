@@ -34,7 +34,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --model-parallel-size ${MP_SIZE} \
        --epochs 0 \
        --eval-valid \
-       --eval-batch-size 8 \
+       --eval-batch-size 4 \
        --overwrite \
        2>&1"
 
