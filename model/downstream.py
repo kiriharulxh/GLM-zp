@@ -45,7 +45,7 @@ class GLMForMultiTokenCloze(torch.nn.Module):
         seq_ids = torch.arange(target_ids.size(-1), dtype=torch.long, device=target_ids.device)
         seq_ids = seq_ids.unsqueeze(0).expand_as(target_ids)
         logits = outputs[batch_ids, seq_ids, target_ids]
-        print_rank_0("**************** You Found the Right Place! *********************")
+        # print_rank_0("**************** You Found the Right Place! *********************")
         logits = (logits * logit_mask).mean(dim=1)
         if self.length_penalty > 0.0:
             logits = logits / logit_mask.sum(dim=1) ** self.length_penalty
