@@ -1,6 +1,5 @@
 DATA_ROOT=/root/data
 CHECKPOINT_PATH="/share/lxh"
-DATA_PATH="/share/lxh/distribute_train/train_data_zs/val.jsonl"
 DATESTR=$(date +"%m-%d-%H-%M")
 
 source $1    # Model
@@ -22,7 +21,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --deepspeed_config config_tasks/config_blocklm_10B_cnndm.json \
        --finetune \
        --task ${TASK_NAME} \
-       --test-data ${DATA_PATH} \
+       --data-dir ${DATA_PATH} \
        --checkpoint-activations \
        --num-workers 1 \
        --no-load-optim \
@@ -34,6 +33,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --fp16 \
        --model-parallel-size ${MP_SIZE} \
        --epochs 0 \
+       --eval-valid \
        --overwrite \
        2>&1"
 
