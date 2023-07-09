@@ -5,6 +5,6 @@ MODEL_ARGS="--block-lm \
             --num-layers 48 \
             --hidden-size 4096 \
             --num-attention-heads 64 \
-            --max-position-embeddings 1024 \
+            --max-position-embeddings 2048 \
             --tokenizer-type ChineseSPTokenizer \
             --load-pretrained ${CHECKPOINT_PATH}/GLM-10B-chinese-customization_07-07-14-48"
