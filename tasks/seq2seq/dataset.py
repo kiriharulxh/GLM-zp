@@ -792,7 +792,8 @@ class CustomizationDataset(torch.utils.data.Dataset):
         elif split == "test":
             filename = "test"
         else:
-            raise NotImplementedError(split)
+            filename = split
+            # raise NotImplementedError(split)
         print_rank_0(f"Creating {task}-{split} dataset from {data_dir}")
         self.dataset_name = split
         source_texts, target_texts = [], []
