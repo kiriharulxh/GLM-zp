@@ -4,6 +4,7 @@
 *.pyc
 logs
 runs
+eval
 settings.json
 .gitignore
 .vscode/
