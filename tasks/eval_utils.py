@@ -68,7 +68,7 @@ def accuracy_func_provider(single_dataset_provider, metric_dict, args, is_test=F
     dataloaders = []
     eval_batch_size = args.eval_batch_size if args.eval_batch_size else args.batch_size
     for datapath in datapaths:
-        if os.path.isdir(datapath):
+        if datapath != 'test' and datapath != 'dev' and os.path.isdir(datapath):
             for sub in os.listdir(datapath):
                 dataset = single_dataset_provider(os.path.join(datapath, sub))
                 dataloader = build_data_loader(
