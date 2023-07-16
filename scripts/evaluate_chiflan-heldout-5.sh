@@ -21,7 +21,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --test-data /share/lxh/distribute_train/held-out-mc/5 \
        --seq-length ${MAX_SEQ_LEN} \
        --checkpoint-activations \
-       --eval-batch-size 16 \
+       --eval-batch-size 8 \
        --num-workers 1 \
        --no-load-optim \
        --no-load-lr-scheduler \
