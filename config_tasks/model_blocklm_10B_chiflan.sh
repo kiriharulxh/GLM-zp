@@ -7,4 +7,4 @@ MODEL_ARGS="--block-lm \
             --num-attention-heads 64 \
             --max-position-embeddings 2048 \
             --tokenizer-type ChineseSPTokenizer \
-            --load-pretrained ${CHECKPOINT_PATH}/GLM-10B-chinese-customization_07-07-14-48"
+            --load-pretrained ${CHECKPOINT_PATH}/GLM-10B-chinese-customization_07-10-10-45"
