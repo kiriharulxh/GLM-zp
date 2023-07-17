@@ -4,15 +4,15 @@ date_time_chinese = input("data-time-chinese: ")
 date_time_chiflan = input("data-time-chiflan: ")
 
 chinese = {
-    "ZeroCLUE": {"cnt": [], "acc": []},
-    "pclue_cls": {"cnt": [], "acc": []},
-    "pclue_nli": {"cnt": [], "acc": []},
-    "pclue_mrc": {"cnt": [], "acc": []},
-    "ceval_choice": {"cnt": [], "acc": []},
-    "ceval": {"cnt": [], "acc": []},
+    # "ZeroCLUE": {"cnt": [], "acc": []},
+    # "pclue_cls": {"cnt": [], "acc": []},
+    # "pclue_nli": {"cnt": [], "acc": []},
+    # "pclue_mrc": {"cnt": [], "acc": []},
+    # "ceval_choice": {"cnt": [], "acc": []},
+    # "ceval": {"cnt": [], "acc": []},
 }
 
-chiflan = deepcopy(chinese)
+chiflan = {}
 
 for i in range(8):
     f = open(f"eval/heldout{i}-{date_time_chinese}-chinese.txt")
