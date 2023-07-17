@@ -18,43 +18,19 @@ for i in range(8):
     f = open(f"eval/heldout{i}-{date_time_chinese}-chinese.txt")
     g = open(f"eval/heldout{i}-{date_time_chiflan}-chiflan.txt")
     for line in f.readlines():
-        if "|epoch: -1| metrics for multichoice-ZeroCLUE-test" in line:
-            chinese["ZeroCLUE"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chinese["ZeroCLUE"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-pclue-cls-test" in line:
-            chinese["pclue_cls"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chinese["pclue_cls"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-ceval-choiceonly-test" in line:
-            chinese["ceval_choice"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chinese["ceval_choice"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-pclue-nli-test" in line:
-            chinese["pclue_nli"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chinese["pclue_nli"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-pclue-mrc-test" in line:
-            chinese["pclue_mrc"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chinese["pclue_mrc"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-ceval-test" in line:
-            chinese["ceval"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chinese["ceval"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
+        if "|epoch: -1| metrics for" in line:
+            test_name = line.split("|epoch: -1| metrics for ")[1].split(": total")[0]
+            if not chinese.get(test_name):
+                chinese[test_name] = {"cnt": [], "acc": []}
+            chinese[test_name]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
+            chinese[test_name]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
     for line in g.readlines():
-        if "|epoch: -1| metrics for multichoice-ZeroCLUE-test" in line:
-            chiflan["ZeroCLUE"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chiflan["ZeroCLUE"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-pclue-cls-test" in line:
-            chiflan["pclue_cls"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chiflan["pclue_cls"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-ceval-choiceonly-test" in line:
-            chiflan["ceval_choice"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chiflan["ceval_choice"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-pclue-nli-test" in line:
-            chiflan["pclue_nli"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chiflan["pclue_nli"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-pclue-mrc-test" in line:
-            chiflan["pclue_mrc"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chiflan["pclue_mrc"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
-        if "|epoch: -1| metrics for multichoice-ceval-test" in line:
-            chiflan["ceval"]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
-            chiflan["ceval"]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
+        if "|epoch: -1| metrics for" in line:
+            test_name = line.split("|epoch: -1| metrics for ")[1].split(": total")[0]
+            if not chiflan.get(test_name):
+                chiflan[test_name] = {"cnt": [], "acc": []}
+            chiflan[test_name]["cnt"].append(line.split("total ")[1].split(" accuracy")[0])
+            chiflan[test_name]["acc"].append(line.split("accuracy = ")[1].split(" %")[0])
 
 for name in chinese:
     print(f"{name}: ")
