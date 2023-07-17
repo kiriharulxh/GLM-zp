@@ -1,4 +1,4 @@
-
+from copy import deepcopy
 
 date_time_chinese = input("data-time-chinese: ")
 date_time_chiflan = input("data-time-chiflan: ")
@@ -12,7 +12,7 @@ chinese = {
     "ceval": {"cnt": [], "acc": []},
 }
 
-chiflan = chinese
+chiflan = deepcopy(chinese)
 
 for i in range(8):
     f = open(f"eval/heldout{i}-{date_time_chinese}-chinese.txt")
