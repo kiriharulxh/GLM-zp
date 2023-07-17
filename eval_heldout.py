@@ -12,7 +12,7 @@ chinese = {
     "ceval": {"cnt": [], "acc": []},
 }
 
-chiflan = chinese.copy()
+chiflan = chinese
 
 for i in range(8):
     f = open(f"eval/heldout{i}-{date_time_chinese}-chinese.txt")
@@ -61,7 +61,7 @@ for name in chinese:
     sum_chin, sum_chif = 0, 0
     for i in range(8):
         assert chinese[name]["cnt"][i] == chiflan[name]["cnt"][i]
-        print(f'{i}: chinese: {chinese[name]["acc"][i]}%    chiflan: {chiflan[name]["acc"][i]}')
+        print(f'{i}: chinese: {chinese[name]["acc"][i]}%    chiflan: {chiflan[name]["acc"][i]}%')
         sum_chin += eval(chinese[name]["acc"][i]) * eval(chinese[name]["cnt"][i])
         sum_chif += eval(chiflan[name]["acc"][i]) * eval(chinese[name]["cnt"][i])
     cnt = sum([cc for cc in chinese[name]["cnt"]])
