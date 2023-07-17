@@ -64,5 +64,5 @@ for name in chinese:
         print(f'{i}: chinese: {chinese[name]["acc"][i]}%    chiflan: {chiflan[name]["acc"][i]}%')
         sum_chin += eval(chinese[name]["acc"][i]) * eval(chinese[name]["cnt"][i])
         sum_chif += eval(chiflan[name]["acc"][i]) * eval(chinese[name]["cnt"][i])
-    cnt = sum([cc for cc in chinese[name]["cnt"]])
+    cnt = sum([eval(cc) for cc in chinese[name]["cnt"]])
     print(f'avg: chinese: {sum_chin/cnt}    chiflan: {sum_chif/cnt}')
