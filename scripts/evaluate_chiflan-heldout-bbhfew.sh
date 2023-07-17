@@ -18,7 +18,7 @@ run_cmd="${DISTRIBUTED_ARGS} finetune_glm.py \
        --finetune \
        --cloze-eval \
        --task multichoice \
-       --test-data /share/lxh/distribute_train/held-out-bbh/bbhcn-few3 \
+       --test-data /share/lxh/distribute_train/bbhcn-few3 \
        --seq-length ${MAX_SEQ_LEN} \
        --checkpoint-activations \
        --eval-batch-size 8 \
